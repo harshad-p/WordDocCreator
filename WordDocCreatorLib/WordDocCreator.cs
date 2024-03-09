@@ -41,6 +41,31 @@ namespace WordDocCreatorLib
         }
 
         /// <summary>
+        /// Identifies a shape in the document, and simply fills the shape 
+        /// with the image supplied at the path. 
+        /// </summary>
+        /// <param name="alternativeText">The alternative text added to the shape</param>
+        /// <param name="imgPath">The path to the image which needs to be inserted into the shape.</param>
+        public void FillShapeWithImage(string alternativeText, string imgPath)
+        {
+            foreach (Shape shape in oDoc.Shapes)
+            {
+                if (shape.AlternativeText == alternativeText)
+                {
+                    Console.WriteLine($"Found shape with Alternative Text '{alternativeText}'.");
+                    Console.WriteLine("Name: " + shape.Name);
+                    Console.WriteLine("ID: " + shape.ID);
+                    Console.WriteLine("AnchorID: " + shape.AnchorID);
+                    Console.WriteLine("Title: " + shape.Title);
+                    Console.WriteLine("Filling shape with supplied image...");
+                    shape.Fill.UserPicture(imgPath);
+                    Console.WriteLine("Filled shape with supplied image!");
+                    break;
+                }
+            }
+        }
+
+        /// <summary>
         /// Saves the document changes at the specified location. 
         /// NOTE: No need to provide the extension. It will be 
         /// automatically added. 
