@@ -3,6 +3,14 @@ using System.Reflection;
 
 namespace WordDocCreatorLib
 {
+    public enum SaveAsDocumentType
+    {
+        DOC,
+        DOCX,
+        PDF,
+        JPEG
+    }
+
     public class WordDocCreator : IDisposable
     {
         private object oMissing = Missing.Value;
@@ -32,11 +40,37 @@ namespace WordDocCreatorLib
             oDoc = oWord.Documents.Add(templateFilePath);
         }
 
-        public string SaveAs(string filePath)
+        /// <summary>
+        /// Saves the document changes at the specified location. 
+        /// NOTE: No need to provide the extension. It will be 
+        /// automatically added. 
+        /// </summary>
+        /// <param name="directory">The directory in which the file needs to be saved.</param>
+        /// <param name="fileName">The name of the file without extension.</param>
+        /// <param name="saveAsDocumentType">The type of file to save as.</param>
+        /// <returns></returns>
+        public string SaveAs(string directory, string fileName, SaveAsDocumentType saveAsDocumentType)
         {
-            var filePathLocal = Path.Combine(filePath + ".docx");
-            oDoc.SaveAs(filePathLocal);
+            var wordFileFormat = GetWordFileFormat(saveAsDocumentType);
+            var filePath = Path.Combine(directory, fileName);
+            oDoc.SaveAs(filePath, wordFileFormat);
+            
             return filePath;
+        }
+
+        private WdSaveFormat GetWordFileFormat(SaveAsDocumentType saveAsDocumentType)
+        {
+            switch (saveAsDocumentType)
+            {
+                case SaveAsDocumentType.DOC:
+                    return WdSaveFormat.wdFormatDocument97;
+                case SaveAsDocumentType.DOCX:
+                    return WdSaveFormat.wdFormatDocumentDefault;
+                case SaveAsDocumentType.PDF:
+                    return WdSaveFormat.wdFormatPDF;
+                default:
+                    return WdSaveFormat.wdFormatDocumentDefault;
+            }
         }
 
         protected virtual void Dispose(bool disposing)
