@@ -48,13 +48,13 @@ namespace WordDocCreatorLib
         /// <param name="directory">The directory in which the file needs to be saved.</param>
         /// <param name="fileName">The name of the file without extension.</param>
         /// <param name="saveAsDocumentType">The type of file to save as.</param>
-        /// <returns></returns>
+        /// <returns>The complete file path (without extension).</returns>
         public string SaveAs(string directory, string fileName, SaveAsDocumentType saveAsDocumentType)
         {
             var wordFileFormat = GetWordFileFormat(saveAsDocumentType);
             var filePath = Path.Combine(directory, fileName);
             oDoc.SaveAs(filePath, wordFileFormat);
-            
+            // TODO: I wish to return this path with the extension.
             return filePath;
         }
 
