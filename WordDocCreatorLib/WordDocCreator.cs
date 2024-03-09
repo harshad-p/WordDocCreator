@@ -7,8 +7,7 @@ namespace WordDocCreatorLib
     {
         DOC,
         DOCX,
-        PDF,
-        JPEG
+        PDF
     }
 
     public class WordDocCreator : IDisposable
