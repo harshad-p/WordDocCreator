@@ -38,6 +38,34 @@ namespace WordDocCreatorLib
             };
             oDoc = oWord.Documents.Add(templateFilePath);
         }
+        
+        /// <summary>
+        /// Updates the text in a region bookmarked in the document with the supplied text. 
+        /// Additionally, the text can be hyperlinked if an optional link is provided. 
+        /// </summary>
+        /// <param name="bookmarkName">The area bookmarked in the document.</param>
+        /// <param name="text">The new text to put in the bookmarked region.</param>
+        /// <param name="hyperlink">Optional hyperlink to add to the text.</param>
+        /// <param name="removeUnderline">Indicates whether to remove the underline that appears under hyperlinked text.</param>
+        public void UpdateBookmarkedText(string bookmarkName, string text, string? hyperlink = null, bool removeUnderline = false)
+        {
+            var bookmarkExists = oDoc.Bookmarks.Exists(bookmarkName);
+            if (bookmarkExists)
+            {
+                var bookmark = oDoc.Bookmarks.get_Item(bookmarkName);
+                var range = bookmark.Range;
+
+                if (hyperlink != null)
+                {
+                    var oHyperlink = range.Hyperlinks.Add(bookmark.Range, hyperlink, TextToDisplay: text);
+                    if(removeUnderline) oHyperlink.Range.Font.Underline = WdUnderline.wdUnderlineNone;
+                }
+                else
+                {
+                    range.Text = text;
+                }
+            }
+        }
 
         /// <summary>
         /// Identifies a shape in the document, and simply fills the shape 
