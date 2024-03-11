@@ -13,6 +13,8 @@
             Data = new string[rows, columns];
             WordTableStyleName = new WordTableStyleName();
             WordFont = new WordFont();
+            DistributeRows = false;
+            DistributeColumns = false;
         }
 
         public string[,] Data { get; private set; }
@@ -21,6 +23,16 @@
         /// This is the name of the table style that is pre-defined in the Word document. 
         /// </summary>
         public WordTableStyleName WordTableStyleName { get; set; }
+
+        /// <summary>
+        /// Indicates whether word should attempt to distribute the row height.
+        /// </summary>
+        public bool DistributeRows { get; set; }
+
+        /// <summary>
+        /// Indicates whether word should attempt to distribute the column width.
+        /// </summary>
+        public bool DistributeColumns { get; set; }
 
         /// <summary>
         /// This contains the font properties of the font defined in Word.
