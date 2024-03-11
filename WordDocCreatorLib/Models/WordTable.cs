@@ -12,6 +12,7 @@
         { 
             Data = new string[rows, columns];
             WordTableStyleName = new WordTableStyleName();
+            WordFont = new WordFont();
         }
 
         public string[,] Data { get; private set; }
@@ -20,6 +21,11 @@
         /// This is the name of the table style that is pre-defined in the Word document. 
         /// </summary>
         public WordTableStyleName WordTableStyleName { get; set; }
+
+        /// <summary>
+        /// This contains the font properties of the font defined in Word.
+        /// </summary>
+        public WordFont WordFont { get; set; }
 
         public WordTable AddData(string[] row)
         {

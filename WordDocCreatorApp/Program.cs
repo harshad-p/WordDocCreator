@@ -21,7 +21,6 @@ namespace WordDocCreatorApp
             
             var wordTable = new WordTable(3, 2);
             wordTable.AddData(["Shengdane", "Ardha Kilo"]).AddData(["Oil", "2 tbl. spoons"]).AddData(["Salt", "Chavinusar"]);
-            wordTable.WordTableStyleName = WordTableStyleName.PlainTable1;
             wordDocCreator.InsertTable("Ingredients_Table", wordTable);
 
             wordDocCreator.UpdateBookmarkedText("Procedure", "Shengdane bhajun tyancha kut karun ghyaycha.");

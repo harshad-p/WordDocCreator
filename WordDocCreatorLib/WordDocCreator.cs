@@ -82,9 +82,10 @@ namespace WordDocCreatorLib
             int columns = table.GetLength(1);
 
             var oTable = oDoc.Tables.Add(bookmark.Range, rows, columns);
-            oTable.Range.Font.Size = 12;
-            oTable.Columns.DistributeWidth();
             oTable.set_Style(wordTable.WordTableStyleName.StyleName);
+            oTable.Range.Font.Name = wordTable.WordFont.WordFontName.Name;
+            oTable.Range.Font.Size = wordTable.WordFont.Size;
+            oTable.Columns.DistributeWidth();
 
             for (int i = 0; i < rows; i++)
             {
