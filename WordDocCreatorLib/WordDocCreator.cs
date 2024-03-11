@@ -1,5 +1,6 @@
 ﻿using Microsoft.Office.Interop.Word;
 using System.Reflection;
+using WordDocCreatorLib.Models;
 
 namespace WordDocCreatorLib
 {
@@ -65,6 +66,35 @@ namespace WordDocCreatorLib
                     range.Text = text;
                 }
             }
+        }
+
+        public void InsertTable(string bookmarkName, WordTable wordTable)
+        {
+            var bookmarkExists = oDoc.Bookmarks.Exists(bookmarkName);
+            if (!bookmarkExists)
+            {
+                return;
+            }
+
+            var bookmark = oDoc.Bookmarks.get_Item(bookmarkName);
+            var table = wordTable.Data;
+            int rows = table.GetLength(0);
+            int columns = table.GetLength(1);
+
+            var oTable = oDoc.Tables.Add(bookmark.Range, rows, columns);
+            oTable.Range.Font.Size = 12;
+            oTable.Columns.DistributeWidth();
+            oTable.set_Style("Table Grid Light");
+
+            for (int i = 0; i < rows; i++)
+            {
+                for(int j = 0; j < columns; j++)
+                {
+                    // Office Word Tables indices are not zero based. 
+                    oTable.Cell(i + 1, j + 1).Range.Text = table[i,j];
+                }
+            }
+
         }
 
         /// <summary>

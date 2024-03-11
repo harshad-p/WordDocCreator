@@ -1,4 +1,5 @@
 ﻿using WordDocCreatorLib;
+using WordDocCreatorLib.Models;
 
 namespace WordDocCreatorApp
 {
@@ -17,6 +18,11 @@ namespace WordDocCreatorApp
             wordDocCreator.FillShapeWithImage("Recipe_Image", "\\\\Mac\\Home\\Documents\\Recipe Binder\\Workspace\\01 Veg\\01 Shengdanyachi Bhaaji\\IMG_0161.HEIC");
             wordDocCreator.UpdateBookmarkedText("Recipe_Title", "Shengdanyachi Bhaaji");
             wordDocCreator.UpdateBookmarkedText("Recipe_Author", "Sarika Nilatkar");
+            
+            var wordTable = new WordTable(3, 2);
+            wordTable.AddData(["Shengdane", "Ardha Kilo"]).AddData(["Oil", "2 tbl. spoons"]).AddData(["Salt", "Chavinusar"]);
+            wordDocCreator.InsertTable("Ingredients_Table", wordTable);
+
             wordDocCreator.UpdateBookmarkedText("Procedure", "Shengdane bhajun tyancha kut karun ghyaycha.");
             Console.WriteLine(wordDocCreator.SaveAs(directory, fileName, SaveAsDocumentType.DOCX));
 
