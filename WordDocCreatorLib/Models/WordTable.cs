@@ -1,5 +1,9 @@
 ﻿namespace WordDocCreatorLib.Models
 {
+    /// <summary>
+    /// This defines the table data and it's styling properties 
+    /// to apply to the word document table. 
+    /// </summary>
     public class WordTable
     {
         private int last = -1;
