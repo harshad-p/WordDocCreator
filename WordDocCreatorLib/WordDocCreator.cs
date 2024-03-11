@@ -84,7 +84,7 @@ namespace WordDocCreatorLib
             var oTable = oDoc.Tables.Add(bookmark.Range, rows, columns);
             oTable.Range.Font.Size = 12;
             oTable.Columns.DistributeWidth();
-            oTable.set_Style("Table Grid Light");
+            oTable.set_Style(wordTable.WordTableStyleName.StyleName);
 
             for (int i = 0; i < rows; i++)
             {

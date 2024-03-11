@@ -11,9 +11,15 @@
         public WordTable(int rows, int columns) 
         { 
             Data = new string[rows, columns];
+            WordTableStyleName = new WordTableStyleName();
         }
 
         public string[,] Data { get; private set; }
+
+        /// <summary>
+        /// This is the name of the table style that is pre-defined in the Word document. 
+        /// </summary>
+        public WordTableStyleName WordTableStyleName { get; set; }
 
         public WordTable AddData(string[] row)
         {
@@ -30,6 +36,11 @@
             }
 
             return this;
+        }
+
+        public override string ToString()
+        {
+            return WordTableStyleName.StyleName;
         }
     }
 }
