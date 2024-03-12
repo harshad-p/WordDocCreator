@@ -48,7 +48,7 @@ namespace WordDocCreatorLib
         /// <param name="text">The new text to put in the bookmarked region.</param>
         /// <param name="hyperlink">Optional hyperlink to add to the text.</param>
         /// <param name="removeUnderline">Indicates whether to remove the underline that appears under hyperlinked text.</param>
-        public void UpdateBookmarkedText(string bookmarkName, string text, string? hyperlink = null, bool removeUnderline = false)
+        public WordDocCreator UpdateBookmarkedText(string bookmarkName, string text, string? hyperlink = null, bool removeUnderline = false)
         {
             var bookmarkExists = oDoc.Bookmarks.Exists(bookmarkName);
             if (bookmarkExists)
@@ -66,14 +66,16 @@ namespace WordDocCreatorLib
                     range.Text = text;
                 }
             }
+
+            return this;
         }
 
-        public void InsertTable(string bookmarkName, WordTable wordTable)
+        public WordDocCreator InsertTable(string bookmarkName, WordTable wordTable)
         {
             var bookmarkExists = oDoc.Bookmarks.Exists(bookmarkName);
             if (!bookmarkExists)
             {
-                return;
+                return this;
             }
 
             var bookmark = oDoc.Bookmarks.get_Item(bookmarkName);
@@ -96,6 +98,8 @@ namespace WordDocCreatorLib
                     oTable.Cell(i + 1, j + 1).Range.Text = table[i,j];
                 }
             }
+
+            return this;
         }
 
         /// <summary>
@@ -104,7 +108,7 @@ namespace WordDocCreatorLib
         /// </summary>
         /// <param name="alternativeText">The alternative text added to the shape</param>
         /// <param name="imgPath">The path to the image which needs to be inserted into the shape.</param>
-        public void FillShapeWithImage(string alternativeText, string imgPath)
+        public WordDocCreator FillShapeWithImage(string alternativeText, string imgPath)
         {
             foreach (Shape shape in oDoc.Shapes)
             {
@@ -121,6 +125,8 @@ namespace WordDocCreatorLib
                     break;
                 }
             }
+
+            return this;
         }
 
         /// <summary>
