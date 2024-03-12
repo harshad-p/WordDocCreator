@@ -34,7 +34,7 @@ namespace WordDocCreatorApp
                 }
             };
 
-            var wordDocCreator = new WordDocCreator(wordTemplateInput.TemplatePath);
+            using var wordDocCreator = new WordDocCreator(wordTemplateInput.TemplatePath);
 
             FillImages(wordDocCreator, wordTemplateInput.Images);
             FillTables(wordDocCreator, wordTemplateInput.WordTables);
@@ -42,7 +42,6 @@ namespace WordDocCreatorApp
 
             var fileSavePath = wordDocCreator.SaveAs(wordTemplateInput.Directory, wordTemplateInput.FileName, SaveAsDocumentType.DOCX);
             Console.WriteLine(fileSavePath);
-
             wordDocCreator.Dispose();
         }
 
