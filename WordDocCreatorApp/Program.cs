@@ -10,7 +10,6 @@ namespace WordDocCreatorApp
             Console.WriteLine("***Word Doc. Creator***");
 
             var wordTemplateInput = WordTemplateInput.GetSampleInputs();
-
             using var wordDocCreator = new WordDocCreator(wordTemplateInput.TemplatePath);
 
             FillImages(wordDocCreator, wordTemplateInput.Images);
@@ -19,7 +18,6 @@ namespace WordDocCreatorApp
 
             var fileSavePath = wordDocCreator.SaveAs(wordTemplateInput.Directory, wordTemplateInput.FileName, SaveAsDocumentType.DOCX);
             Console.WriteLine(fileSavePath);
-            wordDocCreator.Dispose();
         }
 
         private static void FillTexts(WordDocCreator wordDocCreator, IDictionary<string, Tuple<string, string>> texts)
