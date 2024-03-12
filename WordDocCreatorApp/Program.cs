@@ -22,8 +22,9 @@ namespace WordDocCreatorApp
             var wordTable = new WordTable(3, 2);
             wordTable.AddData(["Shengdane", "Ardha Kilo"]).AddData(["Oil", "2 tbl. spoons"]).AddData(["Salt", "Chavinusar"]);
             wordDocCreator.InsertTable("Ingredients_Table", wordTable);
-
+            
             wordDocCreator.UpdateBookmarkedText("Procedure", "Shengdane bhajun tyancha kut karun ghyaycha.");
+            wordDocCreator.UpdateBookmarkedText("Recipe_Is_Ready", "Shengdanyachi Bhaaji Tayyar");
             Console.WriteLine(wordDocCreator.SaveAs(directory, fileName, SaveAsDocumentType.DOCX));
 
             wordDocCreator.Dispose();

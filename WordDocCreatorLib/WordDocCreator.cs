@@ -96,7 +96,6 @@ namespace WordDocCreatorLib
                     oTable.Cell(i + 1, j + 1).Range.Text = table[i,j];
                 }
             }
-
         }
 
         /// <summary>
