@@ -18,6 +18,16 @@ namespace WordDocCreatorApp
 
         public static WordTemplateInput GetSampleInputs()
         {
+            return GetSampleRecipeBinderInputs();
+        }
+
+        public static WordTemplateInput GetSampleRecipeBinderInputs()
+        {
+            return GetShengdanyachiBhaajiInput();
+        }
+
+        public static WordTemplateInput GetShengdanyachiBhaajiInput()
+        {
             var wordTable = new WordTable(3, 2);
             wordTable.AddData(["Shengdane", "Ardha Kilo"]).AddData(["Oil", "2 tbl. spoons"]).AddData(["Salt", "Chavinusar"]);
 
