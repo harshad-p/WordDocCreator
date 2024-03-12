@@ -16,14 +16,17 @@ namespace WordDocCreatorApp
 
         public IDictionary<string, Tuple<string, string>> Texts { get; set; }
 
-        public static WordTemplateInput GetSampleInputs()
+        public static IEnumerable<WordTemplateInput> GetSampleInputs()
         {
-            return GetSampleRecipeBinderInputs();
+            return new List<WordTemplateInput>(GetSampleRecipeBinderInputs());
         }
 
-        public static WordTemplateInput GetSampleRecipeBinderInputs()
+        public static IEnumerable<WordTemplateInput> GetSampleRecipeBinderInputs()
         {
-            return GetShengdanyachiBhaajiInput();
+            return
+            [
+                GetShengdanyachiBhaajiInput()
+            ];
         }
 
         public static WordTemplateInput GetShengdanyachiBhaajiInput()

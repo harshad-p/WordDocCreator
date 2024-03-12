@@ -9,15 +9,19 @@ namespace WordDocCreatorApp
         {
             Console.WriteLine("***Word Doc. Creator***");
 
-            var wordTemplateInput = WordTemplateInput.GetSampleInputs();
-            using var wordDocCreator = new WordDocCreator(wordTemplateInput.TemplatePath);
+            var wordTemplateInputs = WordTemplateInput.GetSampleInputs();
 
-            FillImages(wordDocCreator, wordTemplateInput.Images);
-            FillTables(wordDocCreator, wordTemplateInput.WordTables);
-            FillTexts(wordDocCreator, wordTemplateInput.Texts);
+            foreach(var wordTemplateInput in wordTemplateInputs)
+            {
+                using var wordDocCreator = new WordDocCreator(wordTemplateInput.TemplatePath);
 
-            var fileSavePath = wordDocCreator.SaveAs(wordTemplateInput.Directory, wordTemplateInput.FileName, SaveAsDocumentType.DOCX);
-            Console.WriteLine(fileSavePath);
+                FillImages(wordDocCreator, wordTemplateInput.Images);
+                FillTables(wordDocCreator, wordTemplateInput.WordTables);
+                FillTexts(wordDocCreator, wordTemplateInput.Texts);
+
+                var fileSavePath = wordDocCreator.SaveAs(wordTemplateInput.Directory, wordTemplateInput.FileName, SaveAsDocumentType.DOCX);
+                Console.WriteLine(fileSavePath);
+            }
         }
 
         private static void FillTexts(WordDocCreator wordDocCreator, IDictionary<string, Tuple<string, string>> texts)
