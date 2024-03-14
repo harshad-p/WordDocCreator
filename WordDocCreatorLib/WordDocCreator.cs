@@ -11,6 +11,13 @@ namespace WordDocCreatorLib
         PDF
     }
 
+    /// <summary>
+    /// This class provides methods to create and save word documents 
+    /// by loading a template into the instance. 
+    /// 
+    /// NOTE: As of now, you can only work one document at a time. 
+    /// The reference to any previously loaded templates is not kept track of. 
+    /// </summary>
     public class WordDocCreator : IDisposable
     {
         private object oMissing = Missing.Value;
@@ -40,6 +47,11 @@ namespace WordDocCreatorLib
             oDoc = oWord.Documents.Add(templateFilePath);
         }
         
+        public void LoadTemplate(string templateFilePath)
+        {
+            oDoc = oWord.Documents.Add(templateFilePath);
+        }
+
         /// <summary>
         /// Updates the text in a region bookmarked in the document with the supplied text. 
         /// Additionally, the text can be hyperlinked if an optional link is provided. 
