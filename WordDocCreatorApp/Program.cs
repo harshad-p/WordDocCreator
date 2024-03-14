@@ -13,14 +13,24 @@ namespace WordDocCreatorApp
 
             foreach(var wordTemplateInput in wordTemplateInputs)
             {
-                using var wordDocCreator = new WordDocCreator(wordTemplateInput.TemplatePath);
+                // create a single instance of Word instead of one for every document.
+                using var wordDocCreator = new WordDocCreator();
 
-                FillImages(wordDocCreator, wordTemplateInput.Images);
-                FillTables(wordDocCreator, wordTemplateInput.WordTables);
-                FillTexts(wordDocCreator, wordTemplateInput.Texts);
+                foreach (var wordDocumentInputs in wordTemplateInput.WordDocumentInputs)
+                {
+                    // load the template again as the bookmarks get deleted after it is replaced with content
+                    wordDocCreator.LoadTemplate(wordDocumentInputs.Key);
 
-                var fileSavePath = wordDocCreator.SaveAs(wordTemplateInput.Directory, wordTemplateInput.FileName, SaveAsDocumentType.DOCX);
-                Console.WriteLine(fileSavePath);
+                    foreach (var wordDocumentInput in wordDocumentInputs.Value)
+                    {
+                        FillImages(wordDocCreator, wordDocumentInput.Images);
+                        FillTables(wordDocCreator, wordDocumentInput.WordTables);
+                        FillTexts(wordDocCreator, wordDocumentInput.Texts);
+
+                        var fileSavePath = wordDocCreator.SaveAs(wordDocumentInput.Directory, wordDocumentInput.FileName, SaveAsDocumentType.DOCX);
+                        Console.WriteLine(fileSavePath);
+                    }
+                }
             }
         }
 
