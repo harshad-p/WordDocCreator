@@ -8,7 +8,7 @@
         public string SaveDirectory { get; set; }
 
         /// <summary>
-        /// The name of the file to save the word document as.
+        /// The name (without extension) of the file to save the word document as. 
         /// </summary>
         public string FileName { get; set; }
 
