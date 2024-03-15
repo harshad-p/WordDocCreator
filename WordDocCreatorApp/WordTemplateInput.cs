@@ -6,31 +6,44 @@ namespace WordDocCreatorApp
     {
         public WordTemplateInput()
         {
-            WordDocumentInputs = new Dictionary<string, IEnumerable<WordDocumentInput>>();
+            WordDocumentInputs = new List<WordDocumentInput>();
         }
 
-        public IDictionary<string, IEnumerable<WordDocumentInput>> WordDocumentInputs { get; set; }
-
-        public void Add(string templateName, IEnumerable<WordDocumentInput> wordDocumentInput)
+        public WordTemplateInput(string templateFilePath)
         {
-            WordDocumentInputs.Add(templateName, wordDocumentInput);
+            TemplateFilePath = templateFilePath;
+            WordDocumentInputs = new List<WordDocumentInput>();
         }
+
+        public WordTemplateInput(string templateFilePath, IEnumerable<WordDocumentInput> wordDocumentInputs)
+        {
+            TemplateFilePath = templateFilePath;
+            WordDocumentInputs = wordDocumentInputs;
+        }
+
+        public string TemplateFilePath { get; set; }
+        public IEnumerable<WordDocumentInput> WordDocumentInputs { get; set; }
 
         public static IEnumerable<WordTemplateInput> GetSampleInputs()
         {
-            var recipeBinderInput = GetRecipeBinderSampleInput();
-            var recipeBinderTemplateInput = new WordTemplateInput();
-            recipeBinderTemplateInput.Add(recipeBinderInput.Item1, recipeBinderInput.Item2);
+            var recipeBinderInputs = GetRecipeBinderSampleInputs();
 
-            return new List<WordTemplateInput>
-            {
-                recipeBinderTemplateInput
-            };
+            return new List<WordTemplateInput>(recipeBinderInputs);
         }
 
-        public static Tuple<string, IEnumerable<WordDocumentInput>> GetRecipeBinderSampleInput()
+        public static IEnumerable<WordTemplateInput> GetRecipeBinderSampleInputs()
         {
-            return Tuple.Create("\\\\Mac\\Home\\Documents\\Recipe Binder\\Workspace\\Templates\\01 A5 - Kohinoor.dotx", WordDocumentInput.GetSampleRecipeBinderInputs());
+            var recipeBinderInput = GetRecipeBinderSampleInput();
+            return
+            [
+                recipeBinderInput
+            ];
+        }
+
+        public static WordTemplateInput GetRecipeBinderSampleInput()
+        {
+            var recipeBinderTemplateFilePath = "\\\\Mac\\Home\\Documents\\Recipe Binder\\Workspace\\Templates\\01 A5 - Kohinoor.dotx";
+            return new WordTemplateInput(recipeBinderTemplateFilePath, WordDocumentInput.GetSampleRecipeBinderInputs());
         }
 
     }

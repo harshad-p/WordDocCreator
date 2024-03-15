@@ -11,28 +11,25 @@ namespace WordDocCreatorApp
 
             var wordTemplateInputs = WordTemplateInput.GetSampleInputs();
 
-            foreach(var wordTemplateInput in wordTemplateInputs)
+            // create a single instance of Word instead of one for every document.
+            using var wordDocCreator = new WordDocCreator();
+
+            foreach (var wordTemplateInput in wordTemplateInputs)
             {
-                // create a single instance of Word instead of one for every document.
-                using var wordDocCreator = new WordDocCreator();
+                // load the template again as the bookmarks get deleted after it is replaced with content
+                wordDocCreator.LoadTemplate(wordTemplateInput.TemplateFilePath);
 
-                foreach (var wordDocumentInputs in wordTemplateInput.WordDocumentInputs)
+                foreach (var wordDocumentInput in wordTemplateInput.WordDocumentInputs)
                 {
-                    // load the template again as the bookmarks get deleted after it is replaced with content
-                    wordDocCreator.LoadTemplate(wordDocumentInputs.Key);
+                    FillImages(wordDocCreator, wordDocumentInput.Images);
+                    FillTables(wordDocCreator, wordDocumentInput.WordTables);
+                    FillTexts(wordDocCreator, wordDocumentInput.Texts);
 
-                    foreach (var wordDocumentInput in wordDocumentInputs.Value)
-                    {
-                        FillImages(wordDocCreator, wordDocumentInput.Images);
-                        FillTables(wordDocCreator, wordDocumentInput.WordTables);
-                        FillTexts(wordDocCreator, wordDocumentInput.Texts);
-
-                        // Need to save the docx file first...
-                        var fileSavePath = wordDocCreator.SaveAs(wordDocumentInput.Directory, wordDocumentInput.FileName, SaveAsDocumentType.DOCX);
-                        // ... to be exported as a pdf first.
-                        wordDocCreator.SaveAs(wordDocumentInput.Directory, wordDocumentInput.FileName, SaveAsDocumentType.PDF);
-                        Console.WriteLine(fileSavePath);
-                    }
+                    // Need to save the docx file first...
+                    var fileSavePath = wordDocCreator.SaveAs(wordDocumentInput.Directory, wordDocumentInput.FileName, SaveAsDocumentType.DOCX);
+                    // ... to be exported as a pdf first.
+                    wordDocCreator.SaveAs(wordDocumentInput.Directory, wordDocumentInput.FileName, SaveAsDocumentType.PDF);
+                    Console.WriteLine(fileSavePath);
                 }
             }
         }
