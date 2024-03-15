@@ -47,7 +47,7 @@ namespace WordDocCreatorApp
                     // Either provide both, or nothing
                     wordFont = new WordFont(new WordFontName(fontName), fontSize.Value);
                 }
-                wordDocCreator.UpdateBookmarkedText(text.Key, text.Value.Item1, text.Value.Item2, null, wordFont);
+                wordDocCreator.UpdateBookmarkedText(text.Key, text.Value.Item1, text.Value.Item2, true, wordFont);
             }
         }
 
