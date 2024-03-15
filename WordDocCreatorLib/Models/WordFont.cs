@@ -8,7 +8,7 @@
             Size = 10;
         }
 
-        public WordFont(WordFontName wordFontName, int size)
+        public WordFont(WordFontName wordFontName, float size)
         {
             WordFontName = wordFontName;
             Size = size;
@@ -19,7 +19,7 @@
         /// </summary>
         public WordFontName WordFontName { get; set; }
 
-        public int Size { get; set; }
+        public float Size { get; set; }
 
         public override string ToString()
         {

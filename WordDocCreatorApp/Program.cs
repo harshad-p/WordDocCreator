@@ -34,7 +34,7 @@ namespace WordDocCreatorApp
             }
         }
 
-        private static void FillTexts(WordDocCreator wordDocCreator, IDictionary<string, Tuple<string, string>> texts, string? fontName = null, int? fontSize = null)
+        private static void FillTexts(WordDocCreator wordDocCreator, IDictionary<string, Tuple<string, string>> texts, string? fontName = null, float? fontSize = null)
         {
             foreach (var text in texts)
             {
