@@ -8,6 +8,12 @@
             Size = 10;
         }
 
+        public WordFont(WordFontName wordFontName, int size)
+        {
+            WordFontName = wordFontName;
+            Size = size;
+        }
+
         /// <summary>
         /// This is the name of the font that is pre-defined in the Word document. 
         /// </summary>
