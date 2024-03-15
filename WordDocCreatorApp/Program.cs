@@ -9,7 +9,9 @@ namespace WordDocCreatorApp
         {
             Console.WriteLine("***Word Doc. Creator***");
 
-            var wordTemplateInputs = WordTemplateInput.GetSampleInputs();
+            IWordTemplateInputProvider wordTemplateInputProvider = new SampleRecipeBinderWordTemplateInputProvider();
+
+            var wordTemplateInputs = wordTemplateInputProvider.GetTemplateInputs();
 
             // create a single instance of Word instead of one for every document.
             using var wordDocCreator = new WordDocCreator();
