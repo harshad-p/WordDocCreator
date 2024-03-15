@@ -60,7 +60,8 @@ namespace WordDocCreatorLib
         /// <param name="text">The new text to put in the bookmarked region.</param>
         /// <param name="hyperlink">Optional hyperlink to add to the text.</param>
         /// <param name="removeUnderline">Indicates whether to remove the underline that appears under hyperlinked text.</param>
-        public WordDocCreator UpdateBookmarkedText(string bookmarkName, string text, string? hyperlink = null, bool removeUnderline = false)
+        /// <param name="wordFont">An optional parameter to override the font from the template for the bookmark.</param>
+        public WordDocCreator UpdateBookmarkedText(string bookmarkName, string text, string? hyperlink = null, bool? removeUnderline = false, WordFont? wordFont = null)
         {
             var bookmarkExists = oDoc.Bookmarks.Exists(bookmarkName);
             if (bookmarkExists)
@@ -71,15 +72,26 @@ namespace WordDocCreatorLib
                 if (hyperlink != null)
                 {
                     var oHyperlink = range.Hyperlinks.Add(bookmark.Range, hyperlink, TextToDisplay: text);
-                    if(removeUnderline) oHyperlink.Range.Font.Underline = WdUnderline.wdUnderlineNone;
+                    if(removeUnderline.HasValue && removeUnderline.Value) oHyperlink.Range.Font.Underline = WdUnderline.wdUnderlineNone;
                 }
                 else
                 {
                     range.Text = text;
                 }
+
+                if(wordFont != null)
+                {
+                    SetWordFont(range, wordFont);
+                }
             }
 
             return this;
+        }
+
+        private void SetWordFont(Microsoft.Office.Interop.Word.Range range, WordFont wordFont)
+        {
+            range.Font.Name = wordFont.WordFontName.Name;
+            range.Font.Size = wordFont.Size;
         }
 
         public WordDocCreator InsertTable(string bookmarkName, WordTable wordTable)

@@ -34,11 +34,17 @@ namespace WordDocCreatorApp
             }
         }
 
-        private static void FillTexts(WordDocCreator wordDocCreator, IDictionary<string, Tuple<string, string>> texts)
+        private static void FillTexts(WordDocCreator wordDocCreator, IDictionary<string, Tuple<string, string>> texts, string? fontName = null, int? fontSize = null)
         {
             foreach (var text in texts)
             {
-                wordDocCreator.UpdateBookmarkedText(text.Key, text.Value.Item1, text.Value.Item2);
+                WordFont? wordFont = null;
+                if (fontName != null && fontSize != null)
+                {
+                    // Either provide both, or nothing
+                    wordFont = new WordFont(new WordFontName(fontName), fontSize.Value);
+                }
+                wordDocCreator.UpdateBookmarkedText(text.Key, text.Value.Item1, text.Value.Item2, null, wordFont);
             }
         }
 
