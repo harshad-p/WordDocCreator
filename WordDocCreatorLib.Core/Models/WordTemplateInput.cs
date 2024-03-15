@@ -19,7 +19,14 @@
             WordDocumentInputs = wordDocumentInputs;
         }
 
+        /// <summary>
+        /// The path at which the word template file is located. 
+        /// </summary>
         public string TemplateFilePath { get; set; }
+
+        /// <summary>
+        /// The inputs to create a word document out of the template file. 
+        /// </summary>
         public IEnumerable<WordDocumentInput> WordDocumentInputs { get; set; }
 
     }
