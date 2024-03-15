@@ -109,8 +109,7 @@ namespace WordDocCreatorLib
 
             var oTable = oDoc.Tables.Add(bookmark.Range, rows, columns);
             oTable.set_Style(wordTable.WordTableStyleName.StyleName);
-            oTable.Range.Font.Name = wordTable.WordFont.WordFontName.Name;
-            oTable.Range.Font.Size = wordTable.WordFont.Size;
+            SetWordFont(oTable.Range, wordTable.WordFont);
             if(wordTable.DistributeRows) oTable.Rows.DistributeHeight();
             if(wordTable.DistributeColumns) oTable.Columns.DistributeWidth();
 
