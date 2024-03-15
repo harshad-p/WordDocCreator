@@ -5,7 +5,7 @@
         /// <summary>
         /// The directory in which to place the created word document. 
         /// </summary>
-        public string Directory { get; set; }
+        public string SaveDirectory { get; set; }
 
         /// <summary>
         /// The name of the file to save the word document as.

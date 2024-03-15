@@ -29,9 +29,9 @@ namespace WordDocCreatorApp
                     FillTexts(wordDocCreator, wordDocumentInput.Texts);
 
                     // Need to save the docx file first...
-                    var fileSavePath = wordDocCreator.SaveAs(wordDocumentInput.Directory, wordDocumentInput.FileName, SaveAsDocumentType.DOCX);
+                    var fileSavePath = wordDocCreator.SaveAs(wordDocumentInput.SaveDirectory, wordDocumentInput.FileName, SaveAsDocumentType.DOCX);
                     // ... to be exported as a pdf first.
-                    wordDocCreator.SaveAs(wordDocumentInput.Directory, wordDocumentInput.FileName, SaveAsDocumentType.PDF);
+                    wordDocCreator.SaveAs(wordDocumentInput.SaveDirectory, wordDocumentInput.FileName, SaveAsDocumentType.PDF);
                     Console.WriteLine(fileSavePath);
                 }
             }

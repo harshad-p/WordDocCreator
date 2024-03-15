@@ -21,7 +21,7 @@ namespace InputProviderLib
 
             var wordDocumentInput = new WordDocumentInput
             {
-                Directory = "\\\\Mac\\Home\\Documents\\Recipe Binder\\Workspace\\Automated",
+                SaveDirectory = "\\\\Mac\\Home\\Documents\\Recipe Binder\\Workspace\\Automated",
                 FileName = "01 Shengdanyachi Bhaaji - Sarika Nilatkar - A5",
                 WordTables = new Dictionary<string, WordTable>
                 {
