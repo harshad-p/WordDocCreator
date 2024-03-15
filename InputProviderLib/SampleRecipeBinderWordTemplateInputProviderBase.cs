@@ -1,6 +1,8 @@
-﻿namespace WordDocCreatorApp
+﻿using WordDocCreatorLib.Core.Models;
+
+namespace InputProviderLib
 {
-    internal abstract class SampleRecipeBinderWordTemplateInputProviderBase : IWordTemplateInputProvider
+    public abstract class SampleRecipeBinderWordTemplateInputProviderBase : IWordTemplateInputProvider
     {
         private static readonly IWordDocumentInputProvider _wordDocumentInputProvider;
 

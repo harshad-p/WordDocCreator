@@ -1,6 +1,8 @@
-﻿namespace WordDocCreatorApp
+﻿using WordDocCreatorLib.Core.Models;
+
+namespace InputProviderLib
 {
-    internal class SampleRecipeBinderWordDocumentInputProvider : SampleRecipeBinderWordDocumentInputProviderBase
+    public class SampleRecipeBinderWordDocumentInputProvider : SampleRecipeBinderWordDocumentInputProviderBase
     {
         public override IEnumerable<WordDocumentInput> GetWordDocumentInputs()
         {

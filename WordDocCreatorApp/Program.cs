@@ -1,5 +1,6 @@
-﻿using WordDocCreatorLib;
-using WordDocCreatorLib.Models;
+﻿using InputProviderLib;
+using WordDocCreatorLib;
+using WordDocCreatorLib.Core.Models;
 
 namespace WordDocCreatorApp
 {

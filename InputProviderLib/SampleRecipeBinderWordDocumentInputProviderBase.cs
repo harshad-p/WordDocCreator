@@ -1,8 +1,8 @@
-﻿using WordDocCreatorLib.Models;
+﻿using WordDocCreatorLib.Core.Models;
 
-namespace WordDocCreatorApp
+namespace InputProviderLib
 {
-    internal abstract class SampleRecipeBinderWordDocumentInputProviderBase : IWordDocumentInputProvider
+    public abstract class SampleRecipeBinderWordDocumentInputProviderBase : IWordDocumentInputProvider
     {
         public abstract IEnumerable<WordDocumentInput> GetWordDocumentInputs();
 

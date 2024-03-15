@@ -1,8 +1,8 @@
-﻿namespace WordDocCreatorLib.Models
+﻿namespace WordDocCreatorLib.Core.Models
 {
     public class WordFont
     {
-        public WordFont() 
+        public WordFont()
         {
             WordFontName = new WordFontName();
             Size = 10;

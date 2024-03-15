@@ -1,4 +1,4 @@
-﻿namespace WordDocCreatorLib.Models
+﻿namespace WordDocCreatorLib.Core.Models
 {
     public class WordFontName
     {

@@ -27,4 +27,12 @@
     </COMReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WordDocCreatorLib.Core\WordDocCreatorLib.Core.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,9 +1,9 @@
-﻿namespace WordDocCreatorLib.Models
+﻿namespace WordDocCreatorLib.Core.Models
 {
     public class WordTableStyleName
     {
-        public WordTableStyleName() 
-        { 
+        public WordTableStyleName()
+        {
             StyleName = TableGrid.StyleName;
         }
 

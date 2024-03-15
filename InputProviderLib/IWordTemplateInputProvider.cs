@@ -1,4 +1,6 @@
-﻿namespace WordDocCreatorApp
+﻿using WordDocCreatorLib.Core.Models;
+
+namespace InputProviderLib
 {
     public interface IWordTemplateInputProvider
     {

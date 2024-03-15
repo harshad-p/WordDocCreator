@@ -1,6 +1,4 @@
-﻿using WordDocCreatorLib.Models;
-
-namespace WordDocCreatorApp
+﻿namespace WordDocCreatorLib.Core.Models
 {
     public class WordTemplateInput
     {

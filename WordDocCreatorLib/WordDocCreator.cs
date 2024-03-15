@@ -1,6 +1,6 @@
 ﻿using Microsoft.Office.Interop.Word;
 using System.Reflection;
-using WordDocCreatorLib.Models;
+using WordDocCreatorLib.Core.Models;
 
 namespace WordDocCreatorLib
 {
