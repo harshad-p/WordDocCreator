@@ -28,7 +28,7 @@
         /// Any text that needs to be added in the bookmarked region 
         /// denoted by the dictionary key. 
         /// </summary>
-        public IDictionary<string, Tuple<string, string>> Texts { get; set; }
+        public IDictionary<string, WordText> Texts { get; set; }
 
     }
 }

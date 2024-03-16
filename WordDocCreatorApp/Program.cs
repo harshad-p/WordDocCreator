@@ -37,17 +37,11 @@ namespace WordDocCreatorApp
             }
         }
 
-        private static void FillTexts(WordDocCreator wordDocCreator, IDictionary<string, Tuple<string, string>> texts, string? fontName = null, float? fontSize = null)
+        private static void FillTexts(WordDocCreator wordDocCreator, IDictionary<string, WordText> texts)
         {
-            foreach (var text in texts)
+            foreach (var (templateFile, text) in texts)
             {
-                WordFont? wordFont = null;
-                if (fontName != null && fontSize != null)
-                {
-                    // Either provide both, or nothing
-                    wordFont = new WordFont(new WordFontName(fontName), fontSize.Value);
-                }
-                wordDocCreator.UpdateBookmarkedText(text.Key, text.Value.Item1, text.Value.Item2, true, wordFont);
+                wordDocCreator.UpdateBookmarkedText(templateFile, text.Text, text.Hyperlink, text.DoNotUnderlineHyperlink, text.WordFont);
             }
         }
 
